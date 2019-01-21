@@ -8,7 +8,8 @@ def read_eval_print_loop():
     while True:
         try:
             src = input("youdao> ")
-            translate(src)
+            if src:
+                translate(src)
         except KeyboardInterrupt:  # <Ctrl-C>
             print()
             print("KeyboardInterrupt")
