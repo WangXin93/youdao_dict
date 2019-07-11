@@ -1,6 +1,13 @@
 
 # 有道词典命令行查询工具
 
+
+## Install
+
+```
+$ pip install youdao-dict
+```
+
 ## Usages
 
 
@@ -45,10 +52,4 @@ Interactive Shell:
 
 Pass Words as Arguments:
   words
-```
-
-## Install
-
-```
-$ pip install youdao-dict
 ```
