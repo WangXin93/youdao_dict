@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="youdao-dict",
-    version="1.0.0",
+    version="1.0.1",
     author="Xin Wang",
     author_email="wangxin19930411@163.com",
     description="Query Youdao Dictionary in Command Line",

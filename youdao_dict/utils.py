@@ -6,6 +6,8 @@ from lxml import html
 import sys
 import time
 import urllib
+import re
+from . import spellcheck
 
 try:
     import vlc
@@ -58,8 +60,12 @@ def translate(source):
         for r in results:
             print(r)
 
-    print("=" * 49)
+    if len(re.findall(r'\w+', source)) == 1:
+        print("拼写相似单词：")
+        corrs = spellcheck.spell.n_correction(source)
+        print(", ".join(corrs))
 
+    print("=" * 49)
     play_voice(source)
 
 
