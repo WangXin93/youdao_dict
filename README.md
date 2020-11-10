@@ -56,5 +56,5 @@ Pass Words as Arguments:
 
 ## DevLog
 
-2020-11-10 19:45:37 +0800: 添加不同后端(say, vlc, pyttsx3)的英文发音功能
-2020-11-10 16:01:17 +0800: 根据Edit Distance和Probability添加了拼写相似词推荐([参考](http://www.norvig.com/spell-correct.html))
+* 2020-11-10 19:45:37 +0800: 添加不同后端(say, vlc, pyttsx3)的英文发音功能
+* 2020-11-10 16:01:17 +0800: 根据Edit Distance和Probability添加了拼写相似词推荐([参考](http://www.norvig.com/spell-correct.html))
