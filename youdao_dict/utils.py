@@ -1,18 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import requests
-from lxml import html
+import os
+import platform
+import re
 import sys
 import time
 import urllib
-import re
+
+import requests
+from lxml import html
+
 from . import spellcheck
 
 try:
     import vlc
-except:
+except ImportError:
+    pass
+except OSError:
     pass  # `pip install python-vlc` needed
+
+try:
+    import pyttsx3
+except ImportError:
+    pass
 
 LOGO = """
                        _                       _ _      _
@@ -27,7 +38,7 @@ LOGO = """
 def translate(source):
     print("=" * 49)
     print(source)
-    print("=" * 49)
+    print()
 
     #######################
     #     Parse Text      #
@@ -44,6 +55,7 @@ def translate(source):
         print("有道翻译：")
         for r in results:
             print(r)
+        print()
 
     xpath = '//div[@id="tWebTrans"]/div[not(@id)]//div[@class="title"]//span/text()'
     results = tree.xpath(xpath)
@@ -51,6 +63,7 @@ def translate(source):
         print("网络释义：")
         for r in results:
             print(r.strip())
+        print()
 
     xpath = '//*[@id="fanyiToggle"]/div/p[2]/text()'
     results = tree.xpath(xpath)
@@ -59,6 +72,7 @@ def translate(source):
         print("有道机器翻译：")
         for r in results:
             print(r)
+        print()
 
     if len(re.findall(r'\w+', source)) == 1:
         print("拼写相似单词：")
@@ -72,13 +86,21 @@ def translate(source):
 #######################
 #     Play Voice      #
 #######################
-def play_voice(source, type=2):
+def play_voice(source, type=2, backend="say"):
     """
     Args:
         source: percent-encoded string
         type: 1 for English, 2 for American
+        backend: vlc, say, pyttsx3
     """
-    if "vlc" in sys.modules:
+    if platform.system() == "Darwin" and backend == "say": #
+        os.system("say {}".format(source))
+    elif "pyttsx3" in sys.modules and backend == "pyttsx3":
+        import pyttsx3
+        engine = pyttsx3.init()
+        engine.say(source)
+        engine.runAndWait()
+    elif "vlc" in sys.modules and backend == "vlc":
         voice_url = "http://dict.youdao.com/dictvoice?audio={}&type={}"
         voice = vlc.MediaPlayer(voice_url.format(source, type))
         voice.play()

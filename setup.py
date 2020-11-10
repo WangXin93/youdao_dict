@@ -21,7 +21,8 @@ setuptools.setup(
     install_requires=[
         'requests>=2.19.1',
         'lxml>=4.1.0',
-        'python-vlc>=3.0.101'
+        'python-vlc>=3.0.101',
+        'pyttsx3>=2.9.0'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
