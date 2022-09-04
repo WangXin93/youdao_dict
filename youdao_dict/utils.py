@@ -53,6 +53,7 @@ def translate(source):
     # Print 简明翻译 for word
     if results:
         print("有道翻译：")
+        print("-"*49)
         for el in results:
             print(' '.join(el.xpath('./span//text()')))
         print()
@@ -62,6 +63,7 @@ def translate(source):
     # Print 网络翻译 for word
     if results:
         print("网络翻译：")
+        print("-"*49)
         for el in results:
             print(' '.join(el.xpath('./div//text()')))
         print()
@@ -71,6 +73,7 @@ def translate(source):
     # Print results for sentence
     if results:
         print("双语例句：")
+        print("-"*49)
         for el in results:
             print(' '.join(el.xpath('.//text()')))
         print()
@@ -80,6 +83,7 @@ def translate(source):
     # Print results for sentence
     if results:
         print("词典短语：")
+        print("-"*49)
         for el in results:
             print(' '.join(el.xpath('.//text()')))
         print()
