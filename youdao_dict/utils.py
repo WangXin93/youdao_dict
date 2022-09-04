@@ -44,40 +44,45 @@ def translate(source):
     #     Parse Text      #
     #######################
     source = urllib.parse.quote(source)
-    url = "https://www.youdao.com/w/{}/#keyfrom=dict2.top".format(source)
+    url = "https://youdao.com/result?word={}&lang=en".format(source)
     page = requests.get(url)
     tree = html.fromstring(page.content)
 
-    xpath = '//*[@id="phrsListTab"]//div[@class="trans-container"]/ul/li/text()'
+    xpath = '//div[@id="catalogue_author"]//li[@class="word-exp"]'
     results = tree.xpath(xpath)
-    # Print results for word
+    # Print 简明翻译 for word
     if results:
         print("有道翻译：")
-        for r in results:
-            print(r)
+        for el in results:
+            print(' '.join(el.xpath('./span//text()')))
         print()
 
-    xpath = '//div[@id="tWebTrans"]/div[not(@id)]//div[@class="title"]//span/text()'
+    xpath = '//div[@id="catalogue_paraphrasing"]//li[@class="mcols-layout"]'
     results = tree.xpath(xpath)
+    # Print 网络翻译 for word
     if results:
-        print("网络释义：")
-        for r in results:
-            print(r.strip())
+        print("网络翻译：")
+        for el in results:
+            print(' '.join(el.xpath('./div//text()')))
         print()
 
-    xpath = '//*[@id="fanyiToggle"]/div/p[2]/text()'
+    xpath = '//div[@id="catalogue_sentence"]//li[@class="mcols-layout"]'
     results = tree.xpath(xpath)
     # Print results for sentence
     if results:
-        print("有道机器翻译：")
-        for r in results:
-            print(r)
+        print("双语例句：")
+        for el in results:
+            print(' '.join(el.xpath('.//text()')))
         print()
 
-    if len(re.findall(r'\w+', source)) == 1:
-        print("拼写相似单词：")
-        corrs = spellcheck.spell.n_correction(source)
-        print(", ".join(corrs))
+    xpath = '//div[@id="catalogue_usage"]//ul[@class="trans-container"]//li'
+    results = tree.xpath(xpath)
+    # Print results for sentence
+    if results:
+        print("词典短语：")
+        for el in results:
+            print(' '.join(el.xpath('.//text()')))
+        print()
 
     print("=" * 49)
     play_voice(source)
@@ -109,17 +114,3 @@ def play_voice(source, type=2, backend="say"):
         time.sleep(0.6)
         duration = max(voice.get_length() / 1000 - 0.6, 0)
         time.sleep(duration)
-
-
-if __name__ == "__main__":
-    #######################
-    #     Print Logo      #
-    #######################
-    print(LOGO)
-
-    source = sys.argv[1:]
-
-    if len(source) == 1:
-        translate(source[0])
-    elif len(source) > 1:
-        translate(" ".join(source))

@@ -54,6 +54,14 @@ Pass Words as Arguments:
   words
 ```
 
+## Unit Test
+
+使用下面的代码进行单元测试：
+
+```
+python -m unittest discover -s tests
+```
+
 ## DevLog
 
 * 2020-11-10 19:45:37 +0800: 添加不同后端(say, vlc, pyttsx3)的英文发音功能

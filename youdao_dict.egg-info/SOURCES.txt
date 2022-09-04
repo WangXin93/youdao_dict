@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+youdao_dict/__init__.py
+youdao_dict/utils.py
+youdao_dict/youdao.py
+youdao_dict.egg-info/PKG-INFO
+youdao_dict.egg-info/SOURCES.txt
+youdao_dict.egg-info/dependency_links.txt
+youdao_dict.egg-info/entry_points.txt
+youdao_dict.egg-info/requires.txt
+youdao_dict.egg-info/top_level.txt
+youdao_dict/spellcheck/__init__.py
+youdao_dict/spellcheck/big.txt
+youdao_dict/spellcheck/spell-testset1.txt
+youdao_dict/spellcheck/spell-testset2.txt
+youdao_dict/spellcheck/spell.py
