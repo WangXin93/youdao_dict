@@ -88,6 +88,12 @@ def translate(source):
             print(' '.join(el.xpath('.//text()')))
         print()
 
+    if len(re.findall(r'\w+', source)) == 1:
+        print("拼写相似单词：")
+        print("-"*49)
+        corrs = spellcheck.spell.n_correction(source)
+        print(", ".join(corrs))
+
     print("=" * 49)
     play_voice(source)
 
