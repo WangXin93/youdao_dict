@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="youdao-dict",
-    version="1.0.4",
+    version="1.0.5",
     author="Xin Wang",
     author_email="wangxin19930411@163.com",
     description="Query Youdao Dictionary in Command Line",

@@ -46,7 +46,7 @@ def translate(source):
     source = urllib.parse.quote(source)
     url = "https://youdao.com/result?word={}&lang=en".format(source)
     page = requests.get(url)
-    tree = html.fromstring(page.content)
+    tree = html.fromstring(page.text)
 
     xpath = '//div[@id="catalogue_author"]//li[@class="word-exp"]'
     results = tree.xpath(xpath)
